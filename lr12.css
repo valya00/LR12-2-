@@ -1,0 +1,67 @@
+body {
+font-family: Arial, sans-serif;
+text-align: center;
+background: linear-gradient(to right,  #E0FFFF,  #87CEEB);
+}
+h2, h3{
+font-size: 28px;
+font-weight: bold;
+}
+#card {
+width: 300px;
+height: 150px;
+padding: 25px;
+margin: 40px auto;
+border: 2px solid #ccc;
+border-radius: 10px;
+font-size: 28px;
+background: #fff;
+}
+#level, #startBtn {
+padding: 8px 12px;
+margin-top: 10px;
+font-size: 16px;
+border-radius: 10px;
+}
+#input {
+padding: 8px;
+width: 200px;
+margin-top: 15px;
+border-radius: 10px;
+}
+#nextBtn, #startBtn {
+width: 150px;
+height: 70px;
+margin-top: 15px;
+padding: 8px 20px;
+cursor: pointer;
+background: #32CD32;
+border-radius: 10px;
+font-size: 16px;
+}
+#stats {
+margin-top: 20px;
+font-size: 18px;
+}
+#step {
+margin-top: 10px;
+font-size: 16px;
+}
+#modal {
+display: none;
+position: fixed;
+top: 0; left: 0; right: 0; bottom: 0;
+background: rgba(0,0,0,0.6);
+}
+#modalWindow {
+width: 300px;
+background: white;
+margin: 120px auto;
+padding: 20px;
+border-radius: 10px;
+}
+#closeModal {
+margin-top: 15px;
+padding: 6px 15px;
+cursor: pointer;
+}
