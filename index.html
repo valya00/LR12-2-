@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+	<title>Language learning</title>
+	<script src="jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="lr12.css">
+</head>
+<body>
+<h2>Language learning</h2>
+<h3>Оберіть рівень складності:</h3>
+<select id="level">
+<option value = "5">Початковий(5 слів)</option>
+<option value = "10">Середній(10 слів)</option>
+<option value = "15">Складний(15 слів)</option>
+</select>
+<button id="startBtn">Почати</button>
+<div id="game">
+<div id="card"></div>
+<input type="text" id="input" placeholder="Введи переклад"><br>
+<button id="nextBtn">Перевірити</button>
+<div id="step"></div>
+<div id="stats">
+Вірно: <span id="correct">0</span> |
+Невірно: <span id="wrong">0</span>
+</div>
+</div>
+<div id="modal">
+<div id="modalWindow">
+<h3>Результат</h3>
+<p id="resultText"></p>
+<button id="closeModal">OK</button>
+</div>
+</div>
+<script>
+$(document).ready(function(){
+const words = [
+   {en: "always", ua: "завжди"},
+   {en: "never", ua: "ніколи"},
+   {en: "house", ua: "дім"},
+   {en: "sun", ua: "сонце"},
+   {en: "moon", ua: "місяць"},
+   {en: "time", ua: "час"},
+   {en: "water", ua: "вода"},
+   {en: "food", ua: "їжа"},
+   {en: "friend", ua: "друг"},
+   {en: "school", ua: "школа"},
+   {en: "world", ua: "світ"},
+   {en: "love", ua: "любов"},
+   {en: "air", ua: "повітря"},
+   {en: "street", ua: "вулиця"},
+   {en: "family", ua: "сім'я"}
+];
+let index = 0, correct = 0, wrong = 0, total = 10;
+let shuffled = [];
+$("#startBtn").click(function(){
+total = Number($("#level").val());
+shuffled = words.sort(()=>Math.random()-0.5).slice(0, total);
+$("#game").fadeIn();
+$("#startBtn").hide();
+$("#level").hide();
+showWord();
+});
+function showWord(){
+$("#card").text(shuffled[index].en);
+$("#step").text(`Слово ${index + 1} / ${total}`);
+}
+function showModal(){
+let level = "Початковий рівень";
+if(correct >= total * 0.6) level = "Добрий рівень!";
+if(correct >= total * 0.9) level = "Відмінний рівень!";
+$("#resultText").text(`Правильно: ${correct} із ${total}. Ваш рівень: ${level}`);
+$("#modal").fadeIn();
+}
+$("#nextBtn").click(function(){
+const userInput = $("#input").val().trim().toLowerCase();
+if(userInput === shuffled[index].ua) correct++;
+else wrong++;
+$("#correct").text(correct);
+$("#wrong").text(wrong);
+$("#input").val("");
+index++;
+if(index === total){
+showModal();
+} else {
+showWord();
+}
+});
+$("#closeModal").click(function(){
+$("#modal").fadeOut();
+});
+});
+</script>
+</body>
